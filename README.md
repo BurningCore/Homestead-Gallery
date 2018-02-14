@@ -1,7 +1,7 @@
 # Homestead-Gallery
 
-Currentslide pictures sometimes shift halfway down on David's check with incognito mode
-Try to make David's computer accept panos and portraits
+-Currentslide pictures sometimes shift halfway down on David's check with incognito mode
+-Try to make David's computer accept panos and portraits
 
 v 1.4
 
@@ -57,8 +57,8 @@ v 0.9
 - Added key movement in fullscreen
 - Incorporated current slide into lightbox
 - Bug Fixes: 
-    Span not closing right after fullscreen integration
-    Fixed narrow view list height
+    -Span not closing right after fullscreen integration
+    -Fixed narrow view list height
 
 
 v 0.88
