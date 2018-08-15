@@ -498,6 +498,7 @@
             img[0].onclick = function() {
                 if (HomesteadGallery.fullscreenMode == false)  {
                     HomesteadGallery.fullscreenMode = true;
+                    $('header, .mk-post-nav').css('z-index', '0');
                     
                     if ($('#gallery').hasClass('animate-bottom'))
                         $('#gallery').removeClass('animate-bottom');
@@ -590,6 +591,7 @@
                             }
                             
                             HomesteadGallery.fullscreenMode = false;
+		                    $('header, .mk-post-nav').css('z-index', '301');
                             
                         } else if (e.keyCode == 37) {// Left arrow key maps to keycode '37'
                               HomesteadGallery.previousSlide();
@@ -640,6 +642,7 @@
                         HomesteadGallery.modal.style.display = "none";
                         span.style.display = "none";
                         HomesteadGallery.fullscreenMode = false;
+	                    $('header, .mk-post-nav').css('z-index', '301');
                     }
                 }
             };
