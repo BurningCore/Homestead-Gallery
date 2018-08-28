@@ -15,7 +15,7 @@
             autoSlide : false,
             displayList : true,
             displayControls : true,
-            touchControls : true,
+            touchControlstouchControls : true,
             verticalCentering : true,
             adaptiveHeight : false,
             maxHeight : null,
@@ -134,25 +134,18 @@
             HomesteadGallery.resizeEvent = setTimeout(function() {
 
                 // Adjust right list
-                /**Todo - Clean this up*/
-                var elementHeights = [];
+                var elementHeight;
                 var query = "(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
                 
                 // If wide view
                 if (HomesteadGallery.plugin.width() > 480 && !(window.matchMedia(query).matches)) {
                     
-                    // Grab image heights and put in array, add id to each <li>
-                    HomesteadGallery.plugin.find('.ps-list > li').each(function(){
-                        elementHeights.push(($(this).find('img').height() / 4) + (height / 4));
-                        console.log(($(this).find('img').height() / 4) + (height / 4));
-                    });
-                    
+                   elementHeight = $(this).find('img').height() / 4) + (height / 4));
                 } else if (HomesteadGallery.plugin.width() > 960 && window.matchMedia(query).matches) {
-                    elementHeights[0] = ($(this).find('img').height() / 4) + (height / 4);
+                    elementHeight = ($(this).find('img').height() / 4) + (height / 4);
                 } else
-                    elementHeights[0] = height / 3;
+                    elementHeight = height / 3;
                 
-                var elementHeight = elementHeights[0];//((height - ((HomesteadGallery.slideCount - 1) * 6)) / HomesteadGallery.slideCount);
                 var elementWidth = 100 / HomesteadGallery.slideCount;
                 
                 if (HomesteadGallery.slideCount < 2) {
@@ -181,6 +174,7 @@
                     HomesteadGallery.plugin.find('.ps-list > li').css('height', elementHeight);
                 }
                 
+                /**TO-DO Pictures shifting halfway down most likely affected by this area*/
                 //Adjust Portrait and Panorama Elements
                 var query = "(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
                 
@@ -190,6 +184,7 @@
                     HomesteadGallery.plugin.find('.portrait').css({ height: elementHeight + (elementHeight / 2) });
                     HomesteadGallery.plugin.find('.panorama').css({ height: elementHeight - (elementHeight / 2) });
                 } 
+                /***/
                 
                 // Vertical alignment
                 if (HomesteadGallery.config.verticalCentering) {
@@ -395,7 +390,7 @@
 
                 HomesteadGallery.plugin.find('.currentSlide').on('touchstart', function(e) {
                     try {
-                        if (e.originalEvent.touches[0].clientX && HomesteadGallery.touchFirstPosition == null)
+                        if (e.originalEvent.touches[0].clientX && e.originalEvent.touches.length == 1 && HomesteadGallery.touchFirstPosition == null)
                             HomesteadGallery.touchFirstPosition = e.originalEvent.touches[0].clientX;
                     } catch(e) {
                         HomesteadGallery.touchFirstPosition = null;
@@ -404,7 +399,7 @@
 
                 HomesteadGallery.plugin.find('.currentSlide').on('touchmove', function(e) {
                     try {
-                        if (e.originalEvent.touches[0].clientX && HomesteadGallery.touchFirstPosition != null) {
+                        if (e.originalEvent.touches[0].clientX && e.originalEvent.touches.length == 1 && HomesteadGallery.touchFirstPosition != null) {
                             if (e.originalEvent.touches[0].clientX > (HomesteadGallery.touchFirstPosition + 50)) {
                                 HomesteadGallery.touchFirstPosition = null;
                                 HomesteadGallery.previousSlide();

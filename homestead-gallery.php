@@ -2,7 +2,7 @@
 /*
 Plugin Name: Homestead Gallery
 Description: Simple and Powerful Gallery Plugin
-Version: 0.96
+Version: 1.0
 Author: Adolfo Anzaldua
 Author URI: homesteadheritage.com
 License: GPL-2.0+
