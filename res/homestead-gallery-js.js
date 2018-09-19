@@ -1,6 +1,6 @@
 /**
  *
- * HomesteadGallery Plugin- Version 1.4
+ * HomesteadGallery Plugin- Version 1.5
  *
  */
  
@@ -15,7 +15,7 @@
             autoSlide : false,
             displayList : true,
             displayControls : true,
-            touchControlstouchControls : true,
+            touchControls : true,
             verticalCentering : true,
             adaptiveHeight : false,
             maxHeight : null,
@@ -133,47 +133,9 @@
             // Prevents multiple calculations in a short time
             clearTimeout(HomesteadGallery.resizeEvent);
             HomesteadGallery.resizeEvent = setTimeout(function() {
-
-                // Adjust right list
-                var elementHeight;
-                var query = "(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
                 
-                // If wide view
-                if (HomesteadGallery.plugin.width() > 480 && !(window.matchMedia(query).matches)) {
-                    
-                   elementHeight = ($(this).find('img').height() / 4) + (height / 4);
-                } else if (HomesteadGallery.plugin.width() > 960 && window.matchMedia(query).matches) {
-                    elementHeight = ($(this).find('img').height() / 4) + (height / 4);
-                } else
-                    elementHeight = height / 3;
-                
-                var elementWidth = 100 / HomesteadGallery.slideCount;
-                
-                if (HomesteadGallery.slideCount < 2) {
-                    elementHeight = height / 3;
-                    elementWidth = 33;
-                }
-                
-                HomesteadGallery.plugin.find('.ps-list > li').css({ width: elementWidth + '%' });
-                                
-                // Adjust main container
-                if (typeof animate != 'undefined' && animate && HomesteadGallery.config.maxHeight == null) {
-
-                    if (typeof HomesteadGallery.plugin.find('.currentSlide').animate == 'function') {
-                        HomesteadGallery.plugin.find('.currentSlide').animate({
-                            height: height
-                        }, HomesteadGallery.config.adaptiveDuration, function() {
-                            HomesteadGallery.plugin.find('.ps-list > li').animate({ height: elementHeight }, HomesteadGallery.config.adaptiveDuration);
-                        });
-                    } else {
-                        HomesteadGallery.plugin.find('.currentSlide').css('height', height);
-                        HomesteadGallery.plugin.find('.ps-list > li').css('height', elementHeight);
-                    }
-
-                } else {
-                    HomesteadGallery.plugin.find('.currentSlide').css('height', height);
-                    HomesteadGallery.plugin.find('.ps-list > li').css('height', elementHeight);
-                }
+                HomesteadGallery.plugin.find('.currentSlide').css('height', height);
+                HomesteadGallery.plugin.find('.ps-list > li').css('height', 'auto');
                 
                 //Adjust Portrait and Panorama Elements
                 var query = "(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
@@ -188,26 +150,6 @@
                 // Vertical alignment
                 if (HomesteadGallery.config.verticalCentering) {
                     
-                    if (HomesteadGallery.plugin.width() > 480) {
-                        
-                        // List elements
-                        HomesteadGallery.plugin.find('.ps-list > li').each(function() {
-                            if ((elementHeight > 50) && ($(this).find('img').height() > elementHeight)) {
-                                var imageMargin = Math.round(($(this).find('img').height() - elementHeight) / 2);
-                                $(this).find('img').css('margin-top', -imageMargin);
-
-                            } else if ($(this).find('img').height() <= elementHeight) {
-                                var imageMargin = Math.round((elementHeight - $(this).find('img').height()) / 2);
-                                $(this).find('img').css('margin-top', imageMargin);
-                                
-                            } else
-                                $(this).find('img').css('margin-top', '');
-                        });
-                    } else {
-                        imageMargin = Math.round(($(this).find('.currentSlide > ul > li.elt_1 img').height() - elementHeight) / 2);
-                        $(this).find('img').css('margin-top', imageMargin);
-                    }
-
                     // Current elements
                     HomesteadGallery.plugin.find('.currentSlide > ul > li').each(function(){
                         var isVisible = ($(this).css('display') == 'none') ? false : true;
@@ -388,7 +330,7 @@
             // Touch controls for current image
             if (HomesteadGallery.config.touchControls && HomesteadGallery.slideCount > 1) {
 
-                HomesteadGallery.plugin.find('.currentSlide').on('touchstart', function(e) {
+                HomesteadGallery.plugin.find('.currentSlide').on('touchstart', function(e) {                    
                     try {
                         if (e.originalEvent.touches[0].clientX && e.originalEvent.touches.length == 1 && HomesteadGallery.touchFirstPosition == null)
                             HomesteadGallery.touchFirstPosition = e.originalEvent.touches[0].clientX;
