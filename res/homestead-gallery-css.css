@@ -12,8 +12,8 @@
 @media only screen and (max-width: 600px) {
 	.HomesteadGallery {
         width: auto;
-        margin-left: -30px;
-		margin-right: -30px;
+        margin-left: 0px;
+	margin-right: 0px;
 	}
 }
 
@@ -185,6 +185,7 @@ ul.HomesteadGallery.wide > li,
 
 .HomesteadGallery.narrow .currentSlide img {
     max-width: 100%;
+    min-height: inherit;
 }
 
 .HomesteadGallery.narrow .currentSlide,
