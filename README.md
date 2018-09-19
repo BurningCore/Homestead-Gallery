@@ -1,7 +1,9 @@
 # Homestead-Gallery
 
--Currentslide pictures sometimes shift halfway down on David's check with incognito mode
--Try to make David's computer accept panos and portraits
+v 1.5
+- Fixed Currentslide pictures shifting halfway down occasionally
+- Adjusted CSS to better fit list
+- Simplified some JS code
 
 v 1.4
 
