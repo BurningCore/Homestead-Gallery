@@ -184,8 +184,7 @@ ul.HomesteadGallery.wide > li,
 }
 
 .HomesteadGallery.narrow .currentSlide img {
-    width: 100%;
-    min-height: inherit;
+    max-width: 100%;
 }
 
 .HomesteadGallery.narrow .currentSlide,
