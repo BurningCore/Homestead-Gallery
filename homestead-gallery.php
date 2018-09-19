@@ -2,7 +2,7 @@
 /*
 Plugin Name: Homestead Gallery
 Description: Simple and Powerful Gallery Plugin
-Version: 1.0
+Version: 1.5
 Author: Adolfo Anzaldua
 Author URI: homesteadheritage.com
 License: GPL-2.0+
@@ -10,23 +10,21 @@ License: GPL-2.0+
 
 function load_hg_resources() {
     // Register the script
-    wp_register_script( 'homestead-gallery-js', plugins_url( '/res/homestead-gallery-js.js', __FILE__ ), array( 'jquery' ), '11012017' );
-
-    // Enqueuing the script:
-    wp_enqueue_script( 'homestead-gallery-js' );
+    wp_register_script( 'homestead-gallery-js', plugins_url( '/res/homestead-gallery-js.js', __FILE__ ), array( 'jquery' ), '09192018' );
 
     // Registering the style
-    wp_register_style( 'homestead-gallery-css', plugins_url( '/res/homestead-gallery-css.css', __FILE__ ), array(), '11012017', 'all' );
-
-    // Enqueuing the style
-    wp_enqueue_style( 'homestead-gallery-css' );
-
+    wp_register_style( 'homestead-gallery-css', plugins_url( '/res/homestead-gallery-css.css', __FILE__ ), array(), '09192018', 'all' );
 }
-add_action( 'wp_enqueue_scripts', 'load_hg_resources' );
 
 function init_hg_shortcodes() {
     function hg_shortcode($atts = [], $content = null) {
-
+        
+        // Enqueuing the script:
+        wp_enqueue_script( 'homestead-gallery-js' );
+        
+        // Enqueuing the style
+        wp_enqueue_style( 'homestead-gallery-css' );
+        
         extract(shortcode_atts(array(
         "images" => '1'
         ), $atts));
@@ -63,5 +61,8 @@ function init_hg_shortcodes() {
     }
     add_shortcode('homestead-gallery', 'hg_shortcode');
 }
+
+add_action( 'wp_enqueue_scripts', 'load_hg_resources' );
+
 add_action('init', 'init_hg_shortcodes');
 ?>
