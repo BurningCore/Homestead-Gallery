@@ -143,8 +143,8 @@
                 //console.log(!(window.matchMedia(query).matches));
                 if (!(window.matchMedia(query).matches)) {
                     //Non high-dpi
-                    HomesteadGallery.plugin.find('.portrait').css({ height: elementHeight + (elementHeight / 2) });
-                    HomesteadGallery.plugin.find('.panorama').css({ height: elementHeight - (elementHeight / 2) });
+                    HomesteadGallery.plugin.find('.portrait').css({ height: height + (height / 2) });
+                    HomesteadGallery.plugin.find('.panorama').css({ height: height - (height / 2) });
                 }
                 
                 // Vertical alignment
